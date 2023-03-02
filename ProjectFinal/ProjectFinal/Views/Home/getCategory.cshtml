@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProjectFinal.Models.category>
+@foreach (var i in Model)
+{
+    <div class="row">
+        <div class="span12">
+            <h4 class="title">
+                <span class="pull-left"><span class="text"><span class="line"> <a href="@ViewBag.meta/@i.meta/">@i.name</a></span></span></span>
+                <span class="pull-right">
+                    <a class="left button" href="#" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+                </span>
+            </h4>
+            <div id="myCarousel-2" class="myCarousel carousel slide">
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <ul class="thumbnails">
+                            @Html.Action("getProduct", "Product", new { id = @i.id, meta_title = @ViewBag.metatitle });
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <ul class="thumbnails">
+                            @Html.Action("getProduct", "Product", new { id = @i.id, meta_title = @ViewBag.metatitle });
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+}

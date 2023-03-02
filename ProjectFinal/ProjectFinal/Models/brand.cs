@@ -12,25 +12,20 @@ namespace ProjectFinal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class product
+    public partial class brand
     {
-        public product()
+        public brand()
         {
             this.product_details = new HashSet<product_details>();
         }
     
         public int id { get; set; }
-        public int category_id { get; set; }
         public string name { get; set; }
-        public Nullable<int> price { get; set; }
-        public string images { get; set; }
-        public Nullable<int> quantity { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
     
-        public virtual category category { get; set; }
         public virtual ICollection<product_details> product_details { get; set; }
     }
 }

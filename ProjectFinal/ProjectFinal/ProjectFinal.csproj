@@ -127,12 +127,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\banner.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\brand.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\menu.cs">
@@ -156,25 +161,15 @@
     <Compile Include="Models\product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\product_details.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\bootstrap-responsive.css" />
-    <Content Include="Content\css\bootstrap-responsive.min.css" />
-    <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\bootstrappage.css" />
-    <Content Include="Content\css\flexslider.css" />
-    <Content Include="Content\css\jquery.fancybox.css" />
-    <Content Include="Content\css\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -185,25 +180,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\common.js" />
     <Content Include="Scripts\js\css\style.css" />
     <Content Include="Scripts\js\jquery-1.7.2.min.js" />
@@ -211,7 +187,6 @@
     <Content Include="Scripts\js\jquery.flexslider-min.js" />
     <Content Include="Scripts\js\jquery.scrolltotop.js" />
     <Content Include="Scripts\js\superfish.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Uploads\images\arrow-p.png" />
     <Content Include="Uploads\images\arrow-pleft.png" />
     <Content Include="Uploads\images\bg.png" />
@@ -265,30 +240,31 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
     <Content Include="Views\Home\MyLayout.cshtml" />
-    <Content Include="Views\Menu\getMenu.cshtml" />
     <Content Include="Views\Product\getProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Home\getBanner.cshtml" />
+    <Content Include="Views\Home\getMenu.cshtml" />
+    <Content Include="Views\Home\getCategory.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

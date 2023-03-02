@@ -15,6 +15,28 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
         <EntityType Name="menus">
           <Key>
             <PropertyRef Name="id" />
@@ -27,23 +49,90 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
-        <EntityType Name="products">
+        <EntityType Name="product_details">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="price" Type="int" />
-          <Property Name="images" Type="nvarchar" MaxLength="100" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="brand_id" Type="int" Nullable="false" />
+          <Property Name="colour" Type="nvarchar" MaxLength="50" />
+          <Property Name="size" Type="nvarchar" MaxLength="20" />
           <Property Name="meta" Type="nvarchar" MaxLength="50" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="images" Type="nvarchar" MaxLength="100" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <Association Name="FK__product_d__brand__49C3F6B7">
+          <End Role="brands" Type="Self.brands" Multiplicity="1" />
+          <End Role="product_details" Type="Self.product_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brands">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product_details">
+              <PropertyRef Name="brand_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__product_d__produ__48CFD27E">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="product_details" Type="Self.product_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product_details">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__catego__412EB0B6">
+          <End Role="categories" Type="Self.categories" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ClothingShopModelStoreContainer">
           <EntitySet Name="banners" EntityType="Self.banners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_details" EntityType="Self.product_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__product_d__brand__49C3F6B7" Association="Self.FK__product_d__brand__49C3F6B7">
+            <End Role="brands" EntitySet="brands" />
+            <End Role="product_details" EntitySet="product_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__product_d__produ__48CFD27E" Association="Self.FK__product_d__produ__48CFD27E">
+            <End Role="products" EntitySet="products" />
+            <End Role="product_details" EntitySet="product_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__catego__412EB0B6" Association="Self.FK__products__catego__412EB0B6">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -60,6 +149,30 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="product_details" Relationship="Self.FK__product_d__brand__49C3F6B7" FromRole="brands" ToRole="product_details" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="products" Relationship="Self.FK__products__catego__412EB0B6" FromRole="categories" ToRole="products" />
+        </EntityType>
         <EntityType Name="menu">
           <Key>
             <PropertyRef Name="id" />
@@ -72,23 +185,94 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="product_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="brand_id" Type="Int32" Nullable="false" />
+          <Property Name="colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="brand" Relationship="Self.FK__product_d__brand__49C3F6B7" FromRole="product_details" ToRole="brands" />
+          <NavigationProperty Name="product" Relationship="Self.FK__product_d__produ__48CFD27E" FromRole="product_details" ToRole="products" />
+        </EntityType>
         <EntityType Name="product">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int32" />
           <Property Name="images" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" />
           <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="category" Relationship="Self.FK__products__catego__412EB0B6" FromRole="products" ToRole="categories" />
+          <NavigationProperty Name="product_details" Relationship="Self.FK__product_d__produ__48CFD27E" FromRole="products" ToRole="product_details" />
         </EntityType>
+        <Association Name="FK__product_d__brand__49C3F6B7">
+          <End Role="brands" Type="Self.brand" Multiplicity="1" />
+          <End Role="product_details" Type="Self.product_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brands">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product_details">
+              <PropertyRef Name="brand_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__catego__412EB0B6">
+          <End Role="categories" Type="Self.category" Multiplicity="1" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__product_d__produ__48CFD27E">
+          <End Role="products" Type="Self.product" Multiplicity="1" />
+          <End Role="product_details" Type="Self.product_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product_details">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ClothingShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="banners" EntityType="Self.banner" />
+          <EntitySet Name="brands" EntityType="Self.brand" />
+          <EntitySet Name="categories" EntityType="Self.category" />
           <EntitySet Name="menus" EntityType="Self.menu" />
+          <EntitySet Name="product_details" EntityType="Self.product_details" />
           <EntitySet Name="products" EntityType="Self.product" />
+          <AssociationSet Name="FK__product_d__brand__49C3F6B7" Association="Self.FK__product_d__brand__49C3F6B7">
+            <End Role="brands" EntitySet="brands" />
+            <End Role="product_details" EntitySet="product_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__catego__412EB0B6" Association="Self.FK__products__catego__412EB0B6">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__product_d__produ__48CFD27E" Association="Self.FK__product_d__produ__48CFD27E">
+            <End Role="products" EntitySet="products" />
+            <End Role="product_details" EntitySet="product_details" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -100,6 +284,30 @@
             <EntityTypeMapping TypeName="ClothingShopModel.banner">
               <MappingFragment StoreEntitySet="banners">
                 <ScalarProperty Name="images" ColumnName="images" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="brands">
+            <EntityTypeMapping TypeName="ClothingShopModel.brand">
+              <MappingFragment StoreEntitySet="brands">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="ClothingShopModel.category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="order" ColumnName="order" />
@@ -120,13 +328,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="product_details">
+            <EntityTypeMapping TypeName="ClothingShopModel.product_details">
+              <MappingFragment StoreEntitySet="product_details">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+                <ScalarProperty Name="colour" ColumnName="colour" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="ClothingShopModel.product">
               <MappingFragment StoreEntitySet="products">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="images" ColumnName="images" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="order" ColumnName="order" />

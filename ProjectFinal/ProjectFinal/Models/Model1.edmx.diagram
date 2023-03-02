@@ -4,10 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2ca2389140ad4b318f5f5409744d891a" Name="Diagram1">
-        <EntityTypeShape EntityType="ClothingShopModel.banner" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClothingShopModel.menu" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClothingShopModel.product" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="592a36e9ce874e0ca7c898eff0fd59b1" Name="Diagram1">
+        <EntityTypeShape EntityType="ClothingShopModel.banner" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingShopModel.brand" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingShopModel.category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingShopModel.menu" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingShopModel.product_details" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingShopModel.product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ClothingShopModel.FK__product_d__brand__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingShopModel.FK__products__catego__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingShopModel.FK__product_d__produ__48CFD27E" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

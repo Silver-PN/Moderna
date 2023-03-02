@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ProjectFinal.Models.banner>
+
+@foreach (var i in Model)
+{
+<li>
+    <img src="~/Uploads/images/@i.images" alt="" />
+</li>
+}

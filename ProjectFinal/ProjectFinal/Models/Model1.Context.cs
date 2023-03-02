@@ -26,7 +26,10 @@ namespace ProjectFinal.Models
         }
     
         public DbSet<banner> banners { get; set; }
+        public DbSet<brand> brands { get; set; }
+        public DbSet<category> categories { get; set; }
         public DbSet<menu> menus { get; set; }
+        public DbSet<product_details> product_details { get; set; }
         public DbSet<product> products { get; set; }
     }
 }

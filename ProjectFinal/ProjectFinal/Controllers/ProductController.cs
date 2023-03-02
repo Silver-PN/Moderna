@@ -11,17 +11,20 @@ namespace ProjectFinal.Controllers
     {
         ClothingShopEntities db = new ClothingShopEntities();
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(String meta)
         {
-            return View();
+            var v = from t  in db.categories
+                    where t.meta == meta
+                    select t;
+            return View(v.FirstOrDefault());
         }
-        public ActionResult getProduct()
+        public ActionResult getProduct(long id, string meta_title)
         {
             var v = from t in db.products
-                    where t.hide == true
+                    where t.hide == true && t.category_id == id
                     orderby t.order ascending
                     select t;
-            return PartialView(v);
+            return PartialView(v.ToList());
         }
     }
 }
