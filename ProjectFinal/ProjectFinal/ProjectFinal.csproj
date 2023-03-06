@@ -249,7 +249,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
     <Content Include="Views\Home\MyLayout.cshtml" />
-    <Content Include="Views\Product\getProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,7 +269,8 @@
     <Content Include="Views\Home\getBanner.cshtml" />
     <Content Include="Views\Home\getMenu.cshtml" />
     <Content Include="Views\Home\getCategory.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\Home\getProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

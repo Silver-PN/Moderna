@@ -13,12 +13,12 @@
                 <div class="carousel-inner">
                     <div class="active item">
                         <ul class="thumbnails">
-                            @Html.Action("getProduct", "Product", new { id = @i.id, meta_title = @ViewBag.metatitle });
+                            @Html.Action("getProduct", "Home", new { id = i.id, meta_title = ViewBag.meta});
                         </ul>
                     </div>
                     <div class="item">
                         <ul class="thumbnails">
-                            @Html.Action("getProduct", "Product", new { id = @i.id, meta_title = @ViewBag.metatitle });
+                            @Html.Action("getProduct", "Home", new { id = @i.id, meta_title = ViewBag.meta});
                         </ul>
                     </div>
                 </div>

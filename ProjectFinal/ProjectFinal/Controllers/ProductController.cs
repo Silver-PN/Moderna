@@ -18,13 +18,13 @@ namespace ProjectFinal.Controllers
                     select t;
             return View(v.FirstOrDefault());
         }
-        public ActionResult getProduct(long id, string meta_title)
+        public ActionResult ProductDetail (string name)
         {
             var v = from t in db.products
-                    where t.hide == true && t.category_id == id
-                    orderby t.order ascending
+                    where t.hide == true && t.name == name
                     select t;
-            return PartialView(v.ToList());
+            return View(v.FirstOrDefault());
         }
+
     }
 }

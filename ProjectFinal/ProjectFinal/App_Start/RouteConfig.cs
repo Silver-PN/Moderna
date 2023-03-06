@@ -20,6 +20,15 @@ namespace ProjectFinal
                     {"type","san-pham" }
                 },
                 new[] { "ProjectFinal.Controllers" });
+
+            routes.MapRoute("ProductDetail", "{type}/{meta}/{name}",
+                new { controller = "Product", action = "ProductDetail", name = UrlParameter.Optional },
+                new RouteValueDictionary
+                {
+                    {"type","san-pham" }
+                },
+                new[] { "ProjectFinal.Controllers" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
