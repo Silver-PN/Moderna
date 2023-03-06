@@ -20,7 +20,7 @@
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="product_details" Relationship="Self.FK__product_d__brand__49C3F6B7" FromRole="brands" ToRole="product_details" />
+    <NavigationProperty Name="product_details" Relationship="Self.FK__product_d__brand__46E78A0C" FromRole="brands" ToRole="product_details" />
   </EntityType>
   <EntityType Name="category">
     <Key>
@@ -32,9 +32,21 @@
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="products" Relationship="Self.FK__products__catego__412EB0B6" FromRole="categories" ToRole="products" />
+    <NavigationProperty Name="products" Relationship="Self.FK__products__catego__3E52440B" FromRole="categories" ToRole="products" />
   </EntityType>
   <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="navbar">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -59,8 +71,8 @@
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="brand" Relationship="Self.FK__product_d__brand__49C3F6B7" FromRole="product_details" ToRole="brands" />
-    <NavigationProperty Name="product" Relationship="Self.FK__product_d__produ__48CFD27E" FromRole="product_details" ToRole="products" />
+    <NavigationProperty Name="brand" Relationship="Self.FK__product_d__brand__46E78A0C" FromRole="product_details" ToRole="brands" />
+    <NavigationProperty Name="product" Relationship="Self.FK__product_d__produ__45F365D3" FromRole="product_details" ToRole="products" />
   </EntityType>
   <EntityType Name="product">
     <Key>
@@ -76,10 +88,10 @@
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="category" Relationship="Self.FK__products__catego__412EB0B6" FromRole="products" ToRole="categories" />
-    <NavigationProperty Name="product_details" Relationship="Self.FK__product_d__produ__48CFD27E" FromRole="products" ToRole="product_details" />
+    <NavigationProperty Name="category" Relationship="Self.FK__products__catego__3E52440B" FromRole="products" ToRole="categories" />
+    <NavigationProperty Name="product_details" Relationship="Self.FK__product_d__produ__45F365D3" FromRole="products" ToRole="product_details" />
   </EntityType>
-  <Association Name="FK__product_d__brand__49C3F6B7">
+  <Association Name="FK__product_d__brand__46E78A0C">
     <End Role="brands" Type="Self.brand" Multiplicity="1" />
     <End Role="product_details" Type="Self.product_details" Multiplicity="*" />
     <ReferentialConstraint>
@@ -91,7 +103,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__products__catego__412EB0B6">
+  <Association Name="FK__products__catego__3E52440B">
     <End Role="categories" Type="Self.category" Multiplicity="1" />
     <End Role="products" Type="Self.product" Multiplicity="*" />
     <ReferentialConstraint>
@@ -103,7 +115,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__product_d__produ__48CFD27E">
+  <Association Name="FK__product_d__produ__45F365D3">
     <End Role="products" Type="Self.product" Multiplicity="1" />
     <End Role="product_details" Type="Self.product_details" Multiplicity="*" />
     <ReferentialConstraint>
@@ -120,17 +132,18 @@
     <EntitySet Name="brands" EntityType="Self.brand" />
     <EntitySet Name="categories" EntityType="Self.category" />
     <EntitySet Name="menus" EntityType="Self.menu" />
+    <EntitySet Name="navbars" EntityType="Self.navbar" />
     <EntitySet Name="product_details" EntityType="Self.product_details" />
     <EntitySet Name="products" EntityType="Self.product" />
-    <AssociationSet Name="FK__product_d__brand__49C3F6B7" Association="Self.FK__product_d__brand__49C3F6B7">
+    <AssociationSet Name="FK__product_d__brand__46E78A0C" Association="Self.FK__product_d__brand__46E78A0C">
       <End Role="brands" EntitySet="brands" />
       <End Role="product_details" EntitySet="product_details" />
     </AssociationSet>
-    <AssociationSet Name="FK__products__catego__412EB0B6" Association="Self.FK__products__catego__412EB0B6">
+    <AssociationSet Name="FK__products__catego__3E52440B" Association="Self.FK__products__catego__3E52440B">
       <End Role="categories" EntitySet="categories" />
       <End Role="products" EntitySet="products" />
     </AssociationSet>
-    <AssociationSet Name="FK__product_d__produ__48CFD27E" Association="Self.FK__product_d__produ__48CFD27E">
+    <AssociationSet Name="FK__product_d__produ__45F365D3" Association="Self.FK__product_d__produ__45F365D3">
       <End Role="products" EntitySet="products" />
       <End Role="product_details" EntitySet="product_details" />
     </AssociationSet>

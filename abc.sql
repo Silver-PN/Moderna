@@ -14,13 +14,29 @@ create table menus(
 )
 insert into menus(name,link,meta,hide,[order]) 
 VALUES
-(N'Phụ nữ','woman.cshtml','phu-nu',1,1),
-(N'Nam giới','mam.cshtml','nam-gioi',1,3),
-(N'Thể thao','sport.cshtml','the-thao',1,2),
-(N'Sách tay','handbag.cshtml','sach-tay',1,4),
-(N'Giá tốt nhất','best_seller.cshtml','gia-tot-nhat',1,6),
-(N'Bán chạy nhất','top_seller.cshtml','ban-chay-nhat',1,5);
-
+(N'Trang chủ','trang-chu','trang-chu',1,1),
+(N'Phụ nữ','san-pham/quan-ao-nu','san-pham/quan-ao-nu',1,2),
+(N'Nam giới','san-pham/quan-ao-nam','san-pham/quan-ao-nam',1,3),
+(N'Thể thao','san-pham/quan-ao-the-thao','san-pham/quan-ao-the-thao',1,4),
+(N'Tin tức','tin-tuc','tin-tuc',1,5),
+(N'Liên hệ','lien-he','lien-he',1,6);
+create table navbars(
+    id int PRIMARY KEY IDENTITY(1,1) not NULL ,
+    name NVARCHAR(50),
+    link NVARCHAR(max),
+    meta NVARCHAR(50),
+    hide BIT,
+    [order] int,
+    datebegin smalldatetime DEFAULT getDate(),
+)
+insert into navbars(name,link,meta,hide,[order]) 
+VALUES
+(N'Tài khoản','thong-tin-tai-khoan','thong-tin-tai-khoan',0,1),
+(N'Giỏ hàng','gio-hang','gio-hang',1,2),
+(N'Đăng nhập','dang-nhap','dang-nhap',1,3),
+(N'Đăng ký','dang-ky','dang-ky',1,4),
+(N'Đăng xuất','dang-xuat','dang-xuat',0,5)
+drop table navbars
 create table categories(
     id int PRIMARY KEY IDENTITY(1,1) not NULL ,
     name NVARCHAR(50),
@@ -101,4 +117,4 @@ VALUES
 ('carousel/banner-1.jpg','banner-1',1,1),
 ('carousel/banner-2.jpg','banner-2',1,2)
 
-drop table products
+drop table menus

@@ -34,6 +34,10 @@ namespace ProjectFinal.Controllers
                     select t;
             return View(v.FirstOrDefault());
         }
+        public ActionResult Cart()
+        {
+            return View();
+        }
 
     }
 }

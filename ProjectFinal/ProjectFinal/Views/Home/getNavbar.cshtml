@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ProjectFinal.Models.navbar>
+
+@foreach (var i in Model)
+{
+    <li>
+        <a href="/@i.link">@i.name</a>
+    </li>
+}

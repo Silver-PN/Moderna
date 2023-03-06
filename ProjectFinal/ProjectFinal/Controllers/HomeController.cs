@@ -15,6 +15,14 @@ namespace ProjectFinal.Controllers
         {
             return View();
         }
+        public ActionResult getNavbar()
+        {
+            var v = from t in db.navbars
+                    where t.hide == true
+                    orderby t.order ascending
+                    select t;
+            return PartialView(v);
+        }
         public ActionResult getMenu()
         {
             var v = from t in db.menus

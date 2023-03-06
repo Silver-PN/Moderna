@@ -37,6 +37,38 @@ namespace ProjectFinal
                 },
                 new[] { "ProjectFinal.Controllers" });
 
+            routes.MapRoute("Login", "{type}/{meta}",
+               new { controller = "Auth", action = "Login", meta = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","dang-nhap"}
+               },
+               new[] { "ProjectFinal.Controllers" });
+
+            routes.MapRoute("Register", "{type}/{meta}",
+               new { controller = "Auth", action = "Register", meta = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","dang-ky"}
+               },
+               new[] { "ProjectFinal.Controllers" });
+
+            routes.MapRoute("Cart", "{type}/{meta}",
+               new { controller = "Product", action = "Cart", meta = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","gio-hang"}
+               },
+               new[] { "ProjectFinal.Controllers" });
+
+            routes.MapRoute("Contact", "{type}/{meta}",
+              new { controller = "Auth", action = "Contact", meta = UrlParameter.Optional },
+              new RouteValueDictionary
+              {
+                    {"type","lien-he"}
+              },
+              new[] { "ProjectFinal.Controllers" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
