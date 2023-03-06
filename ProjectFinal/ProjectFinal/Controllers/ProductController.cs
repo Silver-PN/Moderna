@@ -18,6 +18,15 @@ namespace ProjectFinal.Controllers
                     select t;
             return View(v.FirstOrDefault());
         }
+        public ActionResult getProduct(long id, string meta_title)
+        {
+            ViewBag.meta = meta_title;
+            var v = from t in db.products
+                    where t.hide == true && t.category_id == id
+                    orderby t.order ascending
+                    select t;
+            return PartialView(v.ToList());
+        }
         public ActionResult ProductDetail (string name)
         {
             var v = from t in db.products

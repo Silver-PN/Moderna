@@ -21,11 +21,19 @@ namespace ProjectFinal
                 },
                 new[] { "ProjectFinal.Controllers" });
 
-            routes.MapRoute("ProductDetail", "{type}/{meta}/{name}",
+            routes.MapRoute("ProductDetail", "{type}/{meta}/{id}/{name}",
                 new { controller = "Product", action = "ProductDetail", name = UrlParameter.Optional },
                 new RouteValueDictionary
                 {
                     {"type","san-pham" }
+                },
+                new[] { "ProjectFinal.Controllers" });
+
+            routes.MapRoute("HomePage", "{type}/{meta}",
+                new { controller = "Home", action = "MyLayout", meta = UrlParameter.Optional },
+                new RouteValueDictionary
+                {
+                    {"type","trang-chu" }
                 },
                 new[] { "ProjectFinal.Controllers" });
 
